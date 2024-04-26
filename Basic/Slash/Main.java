@@ -7,8 +7,9 @@ public class Main {
     BufferedReader br = new BufferedReader(
                           new InputStreamReader(System.in));
     // TODO: fixme.
+    Integer numberOfStrings = Integer.parseInt(br.readLine());
+    
 
-    System.out.println("Hi!");
-
+    
   }
 }
