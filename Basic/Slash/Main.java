@@ -9,7 +9,5 @@ public class Main {
     // TODO: fixme.
     Integer numberOfStrings = Integer.parseInt(br.readLine());
     
-
-    
   }
 }
