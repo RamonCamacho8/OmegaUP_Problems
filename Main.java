@@ -6,7 +6,7 @@ public class Main {
         Scanner s = new Scanner(System.in);
 
         Integer[] lectura = Arrays.stream(s.nextLine().split(" ")).map(Integer::parseInt).toArray(Integer[]::new);
-
+        
 
         s.close();
     }
