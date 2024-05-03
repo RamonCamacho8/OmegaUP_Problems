@@ -6,51 +6,76 @@ public class Main {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
 
+        
+        String fullInput = "";
+        int count = 0;
         Integer n = Integer.parseInt(s.nextLine());
         Integer[] numbers = new Integer[n];
-        for (int i = 0; i < n; i++) {
+        char stop = '*';
+        while(count < n){
 
-            String singleLine = "";
+            String input = s.nextLine();
+            int endIndex = 0;
 
-            while (true) {
-                String tempLine = s.nextLine();
-                if(tempLine.equals("*"))
-                    break;
-                singleLine += tempLine;
+            for (int i = 0; i < input.length(); i++) {
+                
+                if(input.charAt(i) == stop){
+                    count++;
+                    if (count >= n){
+                        endIndex = i;
+                        break;
+                    }
+                }
+                endIndex = i;
             }
 
-            String[] line = singleLine.split("");
+            fullInput += input.substring(0, endIndex+1);
 
+        }  
+        String[] lines = fullInput.split("\\*");
+
+        for (int i = 0; i < lines.length; i++) {
+            String[] line = lines[i].split("");
 
             int accum = 0;
-            int pivot = 0;
-            Boolean counting = false;
             
+            Boolean counting = false;
+            int counter = 0;
             for (int j = 0; j < line.length; j++) {
+                
                 if(line[j].equals("a")){
-                    pivot = j;
                     counting = true;
+                    counter = 0;
                     continue;
                 }
                 if(counting){
-                    if(line[j].equals("b")){
-                        accum += j - pivot - 1;
+
+                    if(line[j].equals(",")){
+                        counter++;
+                    } 
+                    else if(line[j].equals("b")){
+                        accum += counter;
+                        counter=0;
                         counting = false;
                         continue;
                     }
                     else if(line[j].equals("a")){
                         counting = false;
+                        counter= 0;
                         continue;
                     }
                 }
             }
+            counter = 0;
+
             numbers[i] = accum;
+
         }
 
         for (int i = 0; i < numbers.length; i++) {
             System.out.println(numbers[i]);
         }
-
+        
         s.close();
     }
 }
